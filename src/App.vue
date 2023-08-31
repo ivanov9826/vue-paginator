@@ -7,8 +7,8 @@
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <Paginator :totalPages="pagesTotalCount" @changePage="setCurrentPage" />
-  <ItemList @setCount="setPagesCount" />
+  <Paginator :totalPages="pagesTotalCount" @changePage="setCurrentPage" :currentPage="page" />
+  <ItemList @setCount="setPagesCount" :entriesPerPage="10" :page="page" />
 </template>
 
 <script>
