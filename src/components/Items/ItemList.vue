@@ -8,7 +8,6 @@
       :key="result.id"
     ></Item>
   </ul>
-  <button @click="fetchItems">Fetch data</button>
 </template>
 
 <script>
@@ -58,6 +57,9 @@ export default {
       this.entriesCount = Math.ceil(this.fetchedData.length / 10);
       this.$emit("setCount", this.entriesCount);
     },
+  },
+  created() {
+    this.fetchItems();
   },
 };
 </script>
