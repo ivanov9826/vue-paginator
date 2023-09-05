@@ -11,24 +11,14 @@
 <script>
 export default {
   name: "paginator",
-  emits: ["changePage"],
-  props: {
-    totalPages: {
-      type: Number,
-      required: true,
-    },
-    entriesPerPage: {
-      type: Number,
-      default: 10,
-    },
-    currentPage: {
-      type: Number,
-      default: 1,
+  computed: {
+    totalPages() {
+      return this.$store.getters.getPagesCount;
     },
   },
   methods: {
     onChangePage(num) {
-      this.$emit("changePage", num);
+      this.$store.dispatch("changePage", { page: num });
     },
   },
 };

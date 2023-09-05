@@ -7,8 +7,8 @@
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <Paginator :totalPages="pagesTotalCount" @changePage="setCurrentPage" :currentPage="page" />
-  <ItemList @setCount="setPagesCount" :entriesPerPage="10" :page="page" />
+  <Paginator />
+  <ItemList />
 </template>
 
 <script>
@@ -16,20 +16,10 @@ import ItemList from "./components/Items/ItemList.vue";
 import Paginator from "./components/Items/Paginator.vue";
 
 export default {
-  data: () => {
-    return {
-      pagesTotalCount: 0,
-      page: 1,
-    };
-  },
   components: { ItemList, Paginator },
-  methods: {
-    setPagesCount(val) {
-      this.pagesTotalCount = val;
-    },
-    setCurrentPage(e) {
-      this.page = e;
-    },
+
+  beforeCreate() {
+    this.$store.dispatch("fetchItems");
   },
 };
 </script>
