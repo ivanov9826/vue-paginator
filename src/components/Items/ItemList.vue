@@ -1,7 +1,7 @@
 <template>
   <ul v-if="fetchedData">
     <Item
-      v-for="result in currentPageItems"
+      v-for="result in pageItems"
       :title="result.title"
       :body="result.body"
       :userId="result.userId"
@@ -14,21 +14,17 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Item from "./Item.vue";
 
 export default {
   name: "item-list",
   components: { Item },
   computed: {
-    fetchedData() {
-      return this.$store.getters.getItems;
-    },
-    currentPageItems() {
-      if (this.fetchedData) {
-        this.$store.dispatch("setPageEntries");
-        return this.$store.getters.getPageItems;
-      }
-    },
+    ...mapGetters({
+      fetchedData: "getItems",
+      pageItems: "getPageItems",
+    }),
   },
 };
 </script>
