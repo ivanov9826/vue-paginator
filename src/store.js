@@ -14,6 +14,7 @@ const store = createStore({
       currentPage: 1,
       currPageStartIndex: null,
       currPageEndIndex: null,
+      inputText: null,
     };
   },
   mutations: {
@@ -34,6 +35,9 @@ const store = createStore({
     },
     setCurrentPage(state, payload) {
       state.currentPage = payload;
+    },
+    setInputText(state, payload) {
+      state.inputText = payload;
     },
   },
   actions: {
@@ -88,6 +92,9 @@ const store = createStore({
     },
     getPagesCount(state) {
       return state.pagesCount;
+    },
+    getInputText(state) {
+      return state.inputText;
     },
   },
 });

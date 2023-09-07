@@ -7,6 +7,12 @@
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
+  <div>
+    <input type="text" v-model="inputText" />
+  </div>
+  <div>
+    <button @click="console.log(this.$store.getters.getInputText)">Log The Input</button>
+  </div>
   <Paginator />
   <ItemList />
 </template>
@@ -17,7 +23,16 @@ import Paginator from "./components/Items/Paginator.vue";
 
 export default {
   components: { ItemList, Paginator },
-
+  computed: {
+    inputText: {
+      get() {
+        return this.$store.getters.getInputText;
+      },
+      set(value) {
+        this.$store.commit("setInputText", value);
+      },
+    },
+  },
   beforeCreate() {
     this.$store.dispatch("fetchItems");
   },
