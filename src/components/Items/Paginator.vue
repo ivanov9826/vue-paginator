@@ -2,24 +2,29 @@
   <div>
     <ul>
       <li v-for="(pageNum, index) in totalPages" :key="index">
-        <button @click="onChangePage(pageNum)">{{ pageNum }}</button>
+        <button @click="onChangePage({ page: pageNum })">{{ pageNum }}</button>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "paginator",
   computed: {
-    totalPages() {
-      return this.$store.getters.getPagesCount;
-    },
+    ...mapGetters({
+      totalPages: "getPagesCount",
+    }),
   },
   methods: {
-    onChangePage(num) {
-      this.$store.dispatch("changePage", { page: num });
-    },
+    // onChangePage(num) {
+    //   this.$store.dispatch("changePage", { page: num });
+    // },
+    ...mapActions({
+      onChangePage: "changePage",
+    }),
   },
 };
 </script>
