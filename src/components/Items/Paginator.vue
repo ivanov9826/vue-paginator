@@ -19,9 +19,6 @@ export default {
     }),
   },
   methods: {
-    // onChangePage(num) {
-    //   this.$store.dispatch("changePage", { page: num });
-    // },
     ...mapActions({
       onChangePage: "changePage",
     }),
