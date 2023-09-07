@@ -42,6 +42,7 @@ const store = createStore({
       context.commit("setFetchedItems", data.data);
       context.dispatch("setPagesCount");
       context.dispatch("setIndexes");
+      context.dispatch("setPageEntries");
     },
     setPagesCount(context) {
       const pagesCount = Math.ceil(
@@ -54,6 +55,7 @@ const store = createStore({
       const currPage = context.state.currentPage;
       const startIndex = currPage * perPage - perPage;
       const endIndex = startIndex + perPage;
+
       context.commit("setStartIndex", startIndex);
       context.commit("setEndIndex", endIndex);
     },
